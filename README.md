@@ -51,7 +51,7 @@ Make sure you have Node.js installed on your machine. This project uses npm for 
 
 ## 🎉 Credits
 - **Game Design**: Tran Duc Vu
-- **Art Assets**: Various sources (link to credits or sources if applicable)
-- **Sound Effects**: Various sources (link to credits or sources if applicable)
+- **Art Assets**: Various sources https://www.mixamo.com/
+- **Sound Effects**: Various sources https://pixabay.com/
 
 Thank you for playing Warlords! Good luck, and may your aim be true!
