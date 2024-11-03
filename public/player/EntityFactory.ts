@@ -1,23 +1,16 @@
 import * as pc from 'playcanvas';
 import { handleWeapon } from '../Weapon/Weapon';
-import { createWeapon } from '../Weapon/createWeapon';
 import { createplayerstateMachine } from './playerstateMachine';
 import { initializeCrosshairEntity } from './crosshair';
 import { CharacterEntity } from './characterEntity.ts';
 
 
-/**
- * Creates a character entity and sets up its properties and camera.
- * 
- * @param {pc.Application} app - The PlayCanvas application instance.
- * @param {Object} assets - The assets used for the character.
- * @param {pc.Entity} cameraEntity - The camera entity to position and orient.
- * @returns {CharacterEntity} The created character entity.
- */
+
+
 export function createCharacterEntity(app, assets, cameraEntity) {
     // Create a new entity for the character
-    const characterEntity = new CharacterEntity("character", 100,0, app, assets);
-
+    const characterEntity = new CharacterEntity("character", 100, 0, app, assets,cameraEntity);
+    
     // Initialize the crosshair entity for aiming
     const crosshairEntity = initializeCrosshairEntity(app, assets);
 
@@ -54,7 +47,6 @@ export function createCharacterEntity(app, assets, cameraEntity) {
     // Make the crosshair face the camera
     crosshairEntity.lookAt(cameraEntity.getPosition());
     crosshairEntity.rotateLocal(90, 0, 90); // Rotate to align with camera view
-
     // Add a model component to the character if it doesn't already have one
     if (!characterEntity.model) {
         characterEntity.addComponent("model", {
@@ -65,7 +57,6 @@ export function createCharacterEntity(app, assets, cameraEntity) {
 
     // Set the initial orientation and position of the character
     characterEntity.setLocalEulerAngles(0, 0, 0); // Face forward
-   
 
     // Add physics components for character dynamics
     characterEntity.addComponent("rigidbody", {
@@ -79,7 +70,6 @@ export function createCharacterEntity(app, assets, cameraEntity) {
 
     // Create the player state machine for managing states like idle, running, etc.
     createplayerstateMachine(characterEntity, assets);
-
     // Add a collision component to define the physical shape of the character
     characterEntity.addComponent("collision", {
         type: 'capsule', // Use a capsule shape for collisions
@@ -87,13 +77,12 @@ export function createCharacterEntity(app, assets, cameraEntity) {
         height: 1, // Set the height of the capsule
     });
 
-    characterEntity.setLocalPosition(-100,0.05,0);
+    handleWeapon(characterEntity, assets, app);
+    characterEntity.setPosition(-100, 0, 0);
+    console.log(characterEntity.getPosition());
     // Add the character entity to the application's root for rendering
     app.root.addChild(characterEntity);
-
+    
     // Initialize the weapon handling for the character
-    handleWeapon(characterEntity, assets, app);
-
-    // Return the created character entity for further use
     return characterEntity;
 }

@@ -10,8 +10,7 @@ import { createplayerstateMachine } from './player/playerstateMachine';
 import { initializeCrosshairEntity } from './player/crosshair';
 import { createMovementHandler } from './player/CharacterMovement';
 import { handleZombieStates } from './zombie/handleZombieStates';
-// import { setupRaycasting } from './player/RaycastingSystem';
-
+import { healHeathy } from './healHeathy/healHeathy';
 // Set configuration for Wasm module
 pc.WasmModule.setConfig("Ammo", {
     fallbackUrl: "./Utils/ammo.js",
@@ -25,21 +24,19 @@ function getRandomPosition(range) {
 }
 
 // Function to check if a position is at least `minDistance` away from all existing positions
-function isPositionFarEnough(position, existingPositions, minDistance) {
-    return existingPositions.every((pos) => {
-        const dx = position.x - pos.x;
-        const dz = position.z - pos.z;
-        return Math.sqrt(dx * dx + dz * dz) >= minDistance;
-    });
-}
-
+// function isPositionFarEnough(position, existingPositions, minDistance) {
+//     return existingPositions.every((pos) => {
+//         const dx = position.x - pos.x;
+//         const dz = position.z - pos.z;
+//         return Math.sqrt(dx * dx + dz * dz) >= minDistance;
+//     });
+// }
 // Main initialization function
 window.onload = async () => {
     // Load the Ammo Wasm module
     await new Promise((resolve) => {
         pc.WasmModule.getInstance("Ammo", resolve);
     });
-
     // Get the canvas element for rendering
     const canvas = document.getElementById('canvas') as HTMLCanvasElement;
     if (canvas) {
@@ -70,7 +67,6 @@ window.onload = async () => {
             //             z: getRandomPosition(spawnRange),
             //         };
             //     } while (!isPositionFarEnough(position, zombies.map(z => ({ x: z.getPosition().x, z: z.getPosition().z })), minDistance));
-            
             //     const zombieEntity = createZombieEntity(app, assets, position.x, position.y, position.z);
             //     zombies.push(zombieEntity);
             // } O(n) complexity for checking distance between all zombies and new position is not efficient
@@ -84,12 +80,11 @@ window.onload = async () => {
             const characterEntity = createCharacterEntity(app, assets, cameraEntity);
             const crosshairEntity = initializeCrosshairEntity(app, assets);
             const playerStateMachine = createplayerstateMachine(characterEntity, assets);
-
+           
             // Ensure keyboard input is initialized
             if (!app.keyboard) {
                 throw new Error("Keyboard not initialized");
             }
-
             // Set up movement handler
             const { update: movementUpdate, cleanup: movementCleanup } = createMovementHandler(
                 app,
@@ -100,15 +95,13 @@ window.onload = async () => {
                 crosshairEntity,
                 playerStateMachine
             );
-
-          //  setupRaycasting(app, playerStateMachine, cameraEntity, crosshairEntity, assets);
-
+            healHeathy(app);
+         
             // Main update loop
             app.on("update", (dt) => {
                 updateMap(app, dt, entities);
                 movementUpdate(dt);
-
-
+              
                 // Update zombie states
                 handleZombieStates(assets, characterEntity, zombieEntity1);
                 handleZombieStates(assets, characterEntity, zombieEntity2);

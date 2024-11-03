@@ -32,7 +32,9 @@ export function loadAssets(app: pc.Application): Record<string, pc.Asset> {
         zombieattack: new pc.Asset('animation_zombieattack', 'animation', { url: '../animation/zombie/zombieattack.glb' }), // Zombie attack animation
     
         // Environment and UI
-        healthbar: new pc.Asset('healthbar', 'model', { url: '../model/heathbar/healthbar.glb' }), // Health bar model
+        healthbar: new pc.Asset('healthbar', 'model', { url: '../model/heathbar/healthbar.glb' }), // Health bar model,
+        healheathy : new pc.Asset('heathy','model',{url:'../model/buff.glb'}),
+        bullet: new pc.Asset('map', 'model', { url: '../model/bullet.glb' }), // bullet model
         map: new pc.Asset('map', 'model', { url: '../model/map.glb' }) // Environment map model
     };
     

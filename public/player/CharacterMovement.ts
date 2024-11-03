@@ -24,7 +24,7 @@ export function createMovementHandler(
 ) {
     const state = createInitialState(); // Initialize character state
     const charMovement = new pc.Vec3(); // Vector for character movement
-    
+ 
 
     // Initialize components for the character
     initializeComponents(characterEntity, assets);
@@ -82,7 +82,8 @@ function handleKeyboardInput(dt) {
     // Update character movement based on direction
     charMovement.x += right * MOVEMENT_CONFIG.CHAR_SPEED * dt; // Update x direction
     charMovement.z += forward * MOVEMENT_CONFIG.CHAR_SPEED * dt; // Update z direction
-
+     
+   
     // Update character rotation based on movement direction
     if (forward !== 0 || right !== 0) {
         let angle = Math.atan2(right, forward) * (180 / Math.PI); // Calculate angle in degrees
@@ -134,7 +135,7 @@ function handleKeyboardInput(dt) {
     function updateCameraPosition() {
         const charPosition = characterEntity.getPosition(); // Get character position
         const cameraOffset = new pc.Vec3().copy(MOVEMENT_CONFIG.CAMERA_OFFSET); // Get camera offset
-        const cameraQuat = new pc.Quat().setFromEulerAngles(0, MOVEMENT_CONFIG.cameraYaw, 0); // Get camera rotation
+        const cameraQuat = new pc.Quat().setFromEulerAngles(MOVEMENT_CONFIG.cameraPitch, MOVEMENT_CONFIG.cameraYaw, 0); // Get camera rotation
         cameraQuat.transformVector(cameraOffset, cameraOffset); // Apply rotation to offset
         const cameraPosition = new pc.Vec3().add2(charPosition, cameraOffset); // Calculate camera position
         cameraEntity.setPosition(cameraPosition); // Set camera position

@@ -6,7 +6,6 @@ export class experimentBar {
     private fillMaterial: pc.StandardMaterial; // Material for the fill portion
     private backgroundEntity: pc.Entity; // Entity representing the background of the experience bar
     private backgroundMaterial: pc.StandardMaterial; // Material for the background
-
     // Define consistent scale constants for the experience bar
     private readonly BASE_WIDTH = 0.025;
     private readonly BASE_HEIGHT = 0.05;
@@ -38,8 +37,8 @@ export class experimentBar {
     // Method to create the material for the fill portion of the experience bar
     private createFillMaterial(): pc.StandardMaterial {
         const material = new pc.StandardMaterial();
-        material.diffuse = new pc.Color(0, 0.7, 1); // Set color to bright blue
-        material.ambient = new pc.Color(0, 0.7, 1); // Set ambient color to match diffuse
+        material.diffuse = new pc.Color(1, 1, 1); // Set color to bright blue
+        material.ambient = new pc.Color(1, 1, 1); // Set ambient color to match diffuse
         material.opacity = 1; // Fully opaque
         material.blendType = pc.BLEND_NORMAL; // Set blend type for rendering
         material.useLighting = false; // Disable lighting effects
@@ -111,12 +110,15 @@ export class experimentBar {
             this.BASE_HEIGHT - 0.02, // Maintain constant height
             this.BASE_DEPTH - 0.01 // Maintain constant depth
         );
+        const fillColor = new pc.Color(0,0, experiencePercentage * 10); // Calculate fill color
+        this.fillMaterial.diffuse = fillColor; // Update fill color
+        this.fillMaterial.ambient = fillColor; // Update ambient color
+        this.fillMaterial.update(); // Update the material to apply changes
 
         // Calculate the new position to anchor the fill bar from the left
-        const newX = 1.85 + (this.BASE_WIDTH * experiencePercentage) / 2; // Calculate new X position
-        this.entity.setLocalPosition(newX, 2.7, 0); // Update position of the fill bar
+        const newX = -2.5 + (this.BASE_WIDTH * experiencePercentage) / 2; // Calculate new X position
+        this.entity.setLocalPosition(newX, 1.4, -4); // Update position of the fill bar
     }
-
     // Method to destroy the experience bar and its components
     destroy() {
         this.backgroundEntity.destroy(); // Remove the background entity

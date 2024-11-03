@@ -2,13 +2,14 @@
 
     // Define common configuration settings for movement and camera
     export const MOVEMENT_CONFIG = {
-        CHAR_SPEED: 20,                   // Character movement speed
+        CHAR_SPEED: 20,             // Character movement speed
+        cameraPitch:0,                  // Initial camera pitch angle
         cameraYaw: 0,                      // Initial camera yaw angle
         CAMERA_OFFSET: new pc.Vec3(0, 2, -3), // Camera offset relative to character
         CAMERA_SENSITIVITY: 0.2,           // Camera movement sensitivity
         CROSSHAIR_DISTANCE: -2,            // Distance of the crosshair from the character
         INITIAL_CAMERA_PITCH: 15,          // Initial pitch angle for the camera
-        MAX_CAMERA_PITCH: 45,              // Maximum pitch angle for camera rotation
+        MAX_CAMERA_PITCH: 60    ,              // Maximum pitch angle for camera rotation
         RAYCAST_DISTANCE: 200            // Raycast distance for detecting objects
     };
 
@@ -29,7 +30,6 @@
         shootingCooldown: number;  
         lastReloadTime: number;        // Cooldown period (ms) between shots
     }
-
     // Initialize the default state for the character’s movement and actions
     export const createInitialState = (): MovementState => ({
         isAttacking: false,
