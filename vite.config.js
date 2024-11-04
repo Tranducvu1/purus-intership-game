@@ -4,7 +4,13 @@ export default defineConfig({
   plugins: [
     del({ targets: ["dist/*"], ignore: ["dist/assets"], runOnce: true }),
     del({ targets: ["dist/*"],   ignore: ["dist/assets", "dist/index"],runOnce: true, hook: "buildEnd" }),
+    copy({
+      targets: [
+        { src: "index.html", dest: "dist" } 
+      ]
+    })
   ],
+  
   // Server Configuration
   base: "/purus-intership-game/",
   mode: "development",
