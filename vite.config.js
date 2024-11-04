@@ -4,11 +4,9 @@ export default defineConfig({
   plugins: [
     del({ targets: ["dist/*"], ignore: ["dist/assets"], runOnce: true }),
     del({ targets: ["dist/*"],   ignore: ["dist/assets", "dist/index"],runOnce: true, hook: "buildEnd" }),
-    
   ],
-  
   // Server Configuration
-  base : "/purus-intership-game/",
+  base: "/purus-intership-game/",
   mode: "development",
  server:{
   open:true,

@@ -27,12 +27,12 @@ export class CharacterEntity extends pc.Entity {
 
           // Initialize and attach health and experience bars to the character entity
           this.healthBar = new healthbarCharacter(app, assets);
-          this.healthBar.entity.setLocalPosition(-2.4, 1.5, -4); 
+          this.healthBar.entity.setLocalPosition(-2.7, 1.45, -4); 
           this.healthBar.entity.setLocalScale(0.015, 0.02, 0.02);
           camera.addChild(this.healthBar.entity);
 
           this.experienceBar = new experimentBar(app, assets);
-          this.experienceBar.entity.setLocalPosition(-2.4, 1.4, -4);
+          this.experienceBar.entity.setLocalPosition(-2.7, 1.35, -4);
           this.experienceBar.entity.setLocalScale(0.015, 0.02, 0.02);
           camera.addChild(this.experienceBar.entity);
     }
