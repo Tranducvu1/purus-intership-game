@@ -3,7 +3,7 @@ import del from 'rollup-plugin-delete';
 export default defineConfig({
   plugins: [
     del({ targets: ["dist/*"], ignore: ["dist/assets"], runOnce: true }),
-    del({ targets: ["dist/*"],   ignore: ["dist/assets", "dist/index"],runOnce: true, hook: "buildEnd" }),
+    del({ targets: ["dist/*"],   ignore: ["dist/assets", "dist/index","dist/index"],runOnce: true, hook: "buildEnd" }),
   ],
   // Server Configuration
   base: "/purus-intership-game/",
