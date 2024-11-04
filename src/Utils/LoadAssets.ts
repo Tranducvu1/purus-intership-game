@@ -13,8 +13,8 @@ export function loadAssets(app: pc.Application): Record<string, pc.Asset> {
     // Paths are set relative to the configured base URL "".
     const assets = {
         // Player model and animations
-        man: new pc.Asset('model_man', 'model', { url: 'model/idle.glb' }),
-        idle: new pc.Asset('animation_idle', 'animation', { url: 'model/idle.glb' }),
+        man: new pc.Asset('model_man', 'model', { url: '/purus-intership-game/model/idle.glb' }),
+        idle: new pc.Asset('animation_idle', 'animation', { url: '/purus-intership-game/model/idle.glb' }),
         running: new pc.Asset('animation_running', 'animation', { url: 'animation/man/running.glb' }),
         reloading: new pc.Asset('animation_reloading', 'animation', { url: 'animation/man/reloading.glb' }),
         shooting: new pc.Asset('animation_shooting', 'animation', { url: 'animation/man/shooting.glb' }),
@@ -24,21 +24,21 @@ export function loadAssets(app: pc.Application): Record<string, pc.Asset> {
         death: new pc.Asset('animation_death', 'animation', { url: 'animation/man/death.glb' }),
         
         // Weapon models
-        weapon: new pc.Asset('model_ak', 'model', { url: 'model/ak.glb' }),
-        crosshair: new pc.Asset('aim', 'model', { url: 'model/crosshair.glb' }),
+        weapon: new pc.Asset('model_ak', 'model', { url: '/purus-intership-game/model/ak.glb' }),
+        crosshair: new pc.Asset('aim', 'model', { url: '/purus-intership-game/model/crosshair.glb' }),
     
         // Zombie model and animations
-        zombie: new pc.Asset('zombie', 'model', { url: 'model/zombie.glb' }),
+        zombie: new pc.Asset('zombie', 'model', { url: '/purus-intership-game/model/zombie.glb' }),
         zombieIdle: new pc.Asset('animation_zombieidle', 'animation', { url: 'animation/zombie/zombieidle.glb' }),
         zombierunning: new pc.Asset('animation_zombierunning', 'animation', { url: 'animation/zombie/zombierunning.glb' }),
         zombiedeath: new pc.Asset('animation_zombiedeath', 'animation', { url: 'animation/zombie/zombiedeath.glb' }),
         zombieattack: new pc.Asset('animation_zombieattack', 'animation', { url: 'animation/zombie/zombieattack.glb' }),
     
         // UI elements and other models
-        healthbar: new pc.Asset('healthbar', 'model', { url: 'model/heathbar/healthbar.glb' }),
-        healheathy : new pc.Asset('heathy','model',{ url: 'model/buff.glb' }),
-        bullet: new pc.Asset('map', 'model', { url: 'model/bullet.glb' }),
-        map: new pc.Asset('map', 'model', { url: 'model/map.glb' })
+        healthbar: new pc.Asset('healthbar', 'model', { url: '/purus-intership-game/model/heathbar/healthbar.glb' }),
+        healheathy : new pc.Asset('heathy','model',{ url: '/purus-intership-game/model/buff.glb' }),
+        bullet: new pc.Asset('map', 'model', { url: '/purus-intership-game/model/bullet.glb' }),
+        map: new pc.Asset('map', 'model', { url: '/purus-intership-game/model/map.glb' })
     };
 
     // AssetListLoader helps manage batch loading and resolves dependencies automatically.
