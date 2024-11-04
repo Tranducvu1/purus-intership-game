@@ -8,6 +8,7 @@ export default defineConfig({
   ],
   
   // Server Configuration
+  base : "purus-intership-game",
   mode: "development",
  server:{
   open:true,
